@@ -4,7 +4,8 @@ const routerProduct=require('./api/v1/routes/product');// ייבוא של הרא
 const morgan=require('morgan');
 const myLog=require('./api/v1/middlewares/myLog');// צירפנו את שכבת הלוג שבנינו
 // ניצור שכבת ביניים משלנו middleware
-
+   
+// new comment
 // const myLog=(req,res,next)=>{
 //       console.log(`${req.}`);
 // }
