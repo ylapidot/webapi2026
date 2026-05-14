@@ -6,11 +6,11 @@ const myLog=require('./api/v1/middlewares/myLog');// צירפנו את שכבת 
 // ניצור שכבת ביניים משלנו middleware
 
 // const myLog=(req,res,next)=>{
-//     console.log(`${req.}`);
+//       console.log(`${req.}`);
 // }
 app.use((req,res,next)=>{
     const arrAllowList=['127.0.0.1','::1'];
-    for()
+   // for()
 });
 // app.use((req,res,next)=>{
 //     if(req.method=='GET' && req.path=='/product')
