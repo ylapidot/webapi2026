@@ -3,16 +3,16 @@ const app=express();// יצמירת אפליקיית אקספרס
 const routerProduct=require('./api/v1/routes/product');// ייבוא של הראוטר של המוצרים
 const morgan=require('morgan');
 const myLog=require('./api/v1/middlewares/myLog');// צירפנו את שכבת הלוג שבנינו
-// ניצור שכבת ביניים משלנו middleware
+
    
 // new comment
 // const myLog=(req,res,next)=>{
 //       console.log(`${req.}`);
 // }
-app.use((req,res,next)=>{
-    const arrAllowList=['127.0.0.1','::1'];
-   // for()
-});
+// app.use((req,res,next)=>{
+//     const arrAllowList=['127.0.0.1','::1'];
+//    // for()
+// });
 // app.use((req,res,next)=>{
 //     if(req.method=='GET' && req.path=='/product')
 //     {
