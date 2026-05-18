@@ -19,7 +19,20 @@ module.exports={
 },
     getById:(req,res)=>{
     const pid=req.params.id;// קבלת קוד המוצר שנשלח
-    return  res.status(200).json({msg:`Got product Id ${pid}  `});
+     const sql=`select * from t_product where pid=${pid}`;// שאילתה המחזירה את כל המוצרים
+        mySqlDb.query(sql,(err,results,feilds)=>{
+            if(err==null)
+            {
+                console.log(results);
+                return res.status(200).json(results);
+            }
+            else
+            {
+                console.log(err);
+                return res.status(500).json({'error':err.message});
+                
+            }
+            });
 },
     add:(req,res)=>{
     // הוספת מוצר חדש
@@ -30,7 +43,20 @@ module.exports={
     res.status(200).json({msg:`update product Id ${pid}  `});
 },
     delete:(req,res)=>{
-    const pid=req.params.id;// קבלת קוד המוצר למחיקה
-    res.status(200).json({msg:`deleted product Id ${pid}  `});
+   const pid=req.params.id;// קבלת קוד המוצר שנשלח
+     const sql=`delete from t_product where pid=${pid}`;// שאילתה המחזירה את כל המוצרים
+        mySqlDb.query(sql,(err,results,feilds)=>{
+            if(err==null)
+            {
+                console.log(results);
+                return res.status(200).json(results);
+            }
+            else
+            {
+                console.log(err);
+                return res.status(500).json({'error':err.message});
+                
+            }
+            });
 }
 };
