@@ -16,8 +16,7 @@ module.exports={
             }
    });// הפעלת השאילתה וקבלת התוצאות בתוך פונקציית החזרה
 //   return  res.status(200).json({msg:`All Products`});// החזרת תשובה של כל המוצרים
-},   
-    getById:(req,res)=>{
+   },   getById:(req,res)=>{
     const pid=req.params.id;// קבלת קוד המוצר שנשלח
      const sql=`select * from t_product where pid=${pid}`;// שאילתה המחזירה את כל המוצרים
         mySqlDb.query(sql,(err,results,feilds)=>{
@@ -59,4 +58,5 @@ module.exports={
             }
             });
 }
-};
+}
+git 
