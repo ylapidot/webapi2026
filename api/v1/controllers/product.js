@@ -35,11 +35,59 @@ module.exports={
 },
     add:(req,res)=>{
     // הוספת מוצר חדש
-    res.status(200).json({msg:req.body});
+   
+    let data=req.body;// שמירת התוכן שנשלח בגוף הבקשה
+    let arr=Object.keys(data);// מייצרת מערך של כל השדות שיש באובייקט
+    let fields='';
+    let values='';
+    for(let i=0;i<arr.length;i++)
+    {
+        fields+=`${arr[i]},`;// pname,price,cid
+        values+=`'${data[arr[i]]}',`;// ' 'bread',50,99
+    }   
+    fields=fields.substring(0,fields.length-1);// בטל פסיק מיותר בסוף
+    values=values.substring(0,values.length-1);// בטל פסיק מיותר בסוף
+    let sql=`INSERT INTO t_product (${fields}) VALUES (${values})`;
+    
+     mySqlDb.query(sql,(err,results,feilds)=>{
+            if(err==null)
+            {
+                console.log(results);
+                return res.status(200).json(results);
+            }
+            else
+            {
+                console.log(err);
+                return res.status(500).json({'error':err.message});
+                
+            }
+            });
 },
     update:(req,res)=>{
     const pid=req.params.id;// קבלת קוד המוצר לעדכון
-    res.status(200).json({msg:`update product Id ${pid}  `});
+    let sql='update t_product set ';
+    let data=req.body;// שמירת התוכן שנשלח בגוף הבקשה
+    let arr=Object.keys(data);// מייצרת מערך של כל השדות שיש באובייקט
+    for(let i=0;i<arr.length;i++)
+    {
+        sql +=`${arr[i]}='${data[arr[i]]}',`;// מעבר על כל רשימת השדות ויצירה של משפט עם ערכים לעדכון
+    }
+    sql=sql.substring(0,sql.length-1);// בטל פסיק מיותר בסוף
+
+    sql+=' Where pid='+pid;
+     mySqlDb.query(sql,(err,results,feilds)=>{
+            if(err==null)
+            {
+                console.log(results);
+                return res.status(200).json(results);
+            }
+            else
+            {
+                console.log(err);
+                return res.status(500).json({'error':err.message});
+                
+            }
+            });
 },
     delete:(req,res)=>{
    const pid=req.params.id;// קבלת קוד המוצר שנשלח
@@ -59,4 +107,3 @@ module.exports={
             });
 }
 }
-git 

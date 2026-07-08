@@ -1,11 +1,16 @@
 const mysql=require('mysql2');
 const conn=mysql.createConnection(
     {
-        host:'localhost',
-        user:'yaron',
-        password:'yaron123',
-        port:3306,
-        database:'webapi'
+// MYSQLSRV=localhost
+// MYSQLUSER=yaron
+// MYSQLPASS=yaron123
+// MYSQLDB=webapi
+// MYSQLPORT=3306
+        host:process.env.MYSQLSRV,
+        user:process.env.MYSQLUSER,
+        password:process.env.MYSQLPASS,
+        port:process.env.MYSQLPORT,
+        database:process.env.MYSQLDB
     }
 );// יצירת אובייקט מסוג חיבור לבסיס הנתונים
 module.exports=conn;
